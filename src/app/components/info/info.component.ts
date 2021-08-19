@@ -55,7 +55,6 @@ export class InfoComponent implements OnInit {
   isShow(){
     this.router.navigate([''])
     myGlobals.globals.setData(false);
-    window.location.reload();
   }
 
   getLoggedIn():boolean{
