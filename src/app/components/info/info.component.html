@@ -1,0 +1,111 @@
+<div class="card">
+  <div class="cardTitle">Kart Bilgileri </div>
+  <div class="container">
+    <form class="example-form">
+      <button (click)="isShow()" *ngIf="getLoggedIn()" class="button-new-request" mat-raised-button color="primary">YENİ SORGU</button>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Müşteri ID'si</mat-label>
+        <input matInput placeholder="" value="{{model.RESNAMEID}}">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Kart Numarası</mat-label>
+        <input matInput placeholder="" value="{{model.CARDNO}}">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Müşteri Adı Soyadı</mat-label>
+        <input matInput placeholder="" value="{{model.GUESTNAME}}  {{model.GUESTSURNAME}}">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Acenta</mat-label>
+        <input matInput placeholder="" value="{{model.AGENCY}}">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Board Tipi</mat-label>
+        <input matInput placeholder="" value="{{model.BOARDTYPE}}">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Oda Tipi</mat-label>
+        <input matInput placeholder="" value="{{model.ROOMTYPE}}">
+      </mat-form-field>
+
+    </form>
+
+    <form class="example-form2">
+      <mat-form-field class="example-full-width2" appearance="fill" floatLabel="always">
+        <mat-label>Yüklenen</mat-label>
+        <input matInput type="number" class="example-right-align" placeholder="0" value="{{model.LOADED}}">
+        <span matPrefix>&nbsp;</span>
+        <span matSuffix>.00</span>
+      </mat-form-field>
+      <mat-form-field class="example-full-width2" appearance="fill" floatLabel="always">
+        <mat-label>Harcanan</mat-label>
+        <input matInput type="number" class="example-right-align" placeholder="0" value="{{model.SPENT}}">
+        <span id="currency" matPrefix>&nbsp;</span>
+        <span matSuffix>.00</span>
+      </mat-form-field>
+      <mat-form-field class="example-full-width2" appearance="fill" floatLabel="always">
+        <mat-label>İade</mat-label>
+        <input matInput type="number" class="example-right-align" placeholder="0" value="{{model.REFUND}}">
+        <span matPrefix>&nbsp;</span>
+        <span matSuffix>.00</span>
+      </mat-form-field>
+      <mat-form-field class="example-full-width2" appearance="fill" floatLabel="always">
+        <mat-label>Bakiye</mat-label>
+        <input matInput type="number" class="example-right-align" placeholder="0" value="{{model.BALANCE}}">
+        <span matPrefix>&nbsp;</span>
+        <span matSuffix>.00</span>
+      </mat-form-field>
+    </form>
+    <div class="expansion-panel">
+      <mat-accordion class="example-headers-align">
+        <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <button (click)="getCardDetails()" class="buttondetail" mat-raised-button color="primary">İşlemler</button>
+            </mat-panel-title>
+
+          </mat-expansion-panel-header>
+          <div class="example-container mat-elevation-z8">
+            <table>
+              <tr>
+                <th>Oluşturulma Tarihi</th>
+                <th>Folyo Tarihi</th>
+                <th>Kart No</th>
+                <th>Ad</th>
+                <th>Soyad</th>
+                <th>Dep. Adı</th>
+                <th>Gelir Adı</th>
+                <th>Folyo Notu</th>
+                <th>Toplam</th>
+                <th>Dövizli Tutar</th>
+                <th>Döviz</th>
+              </tr>
+              <tr *ngFor="let data of model2">
+                <td >{{data.CREATION_DATE}}</td>
+                <td >{{data.FOLIODATE}}</td>
+                <td >{{data.CARDNO}}</td>
+                <td >{{data.NAME}}</td>
+                <td >{{data.LNAME}}</td>
+                <td >{{data.DEPNAME}}</td>
+                <td >{{data.REVENUENAME}}</td>
+                <td >{{data.FOLIONOTE}}</td>
+                <td >{{data.TOTAL}}</td>
+                <td >{{data.CTOTAL}}</td>
+                <td >{{data.CURRENCY}}</td>
+              </tr>
+              <tfoot>
+                <td colspan="8"></td>
+                <td><b>{{getTotalCost()}}</b></td>
+              </tfoot>
+            </table>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+</div>
