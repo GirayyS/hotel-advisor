@@ -1,5 +1,9 @@
 # HotelAdvisor
 
+![ss1](https://user-images.githubusercontent.com/87964371/134802788-c329faf7-6ec1-45f4-bd26-a1d5d8f44422.jpg)
+![ss2](https://user-images.githubusercontent.com/87964371/134802789-1ffc0db4-b4bc-45fa-9fd1-26bd2b28354f.jpg)
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.3.
 
 ## Development server
