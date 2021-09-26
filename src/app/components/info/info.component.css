@@ -137,6 +137,5 @@ tr:nth-child(even) {
 .button-new-request{
   position: absolute ;
   right: 2%;
-  margin-top: 13%;
   background-color:#2ECC71;
 }

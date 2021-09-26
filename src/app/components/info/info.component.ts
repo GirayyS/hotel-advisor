@@ -1,4 +1,4 @@
-import { Component, OnInit,Input,NgModule} from '@angular/core';
+import { Component, OnInit,Input,NgModule, HostListener} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GetCardResponseModel } from 'src/app/models/GetCardResponseModel';
 import { GetExtraModel } from 'src/app/models/GetCardDetails';
@@ -12,7 +12,6 @@ import * as myGlobals from '../../globals';
 })
 export class InfoComponent implements OnInit {
   @Input() model: GetCardResponseModel = new GetCardResponseModel;
-  
   model2: Array<GetExtraModel> = [];
 
   constructor(private route: ActivatedRoute, private service: ApiserviceService, private router: Router) { }
@@ -21,7 +20,6 @@ export class InfoComponent implements OnInit {
   }
 
   step = 0;
-  qr =0;
 
   setStep(index: number) {
     this.step = index;
@@ -52,12 +50,15 @@ export class InfoComponent implements OnInit {
     return this.model2.map(t => t.TOTAL).reduce((acc, value) => acc + value, 0);
   }
 
-  isShow(){
-    this.router.navigate([''])
-    myGlobals.globals.setData(false);
-  }
-
   getLoggedIn():boolean{
     return myGlobals.globals.getData();
+  }
+
+  @HostListener('window:popstate', ['$event'])
+  onPopState() {
+    if(myGlobals.globals.getData() == true){
+      this.router.navigate([''],{})
+      myGlobals.globals.setData(false);
+    }
   }
 }

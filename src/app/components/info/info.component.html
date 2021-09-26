@@ -2,7 +2,7 @@
   <div class="cardTitle">Kart Bilgileri </div>
   <div class="container">
     <form class="example-form">
-      <button (click)="isShow()" *ngIf="getLoggedIn()" class="button-new-request" mat-raised-button color="primary">YENİ SORGU</button>
+      <button (click)="onPopState()" *ngIf="getLoggedIn()" class="button-new-request" mat-raised-button color="primary">YENİ SORGU</button>
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Müşteri ID'si</mat-label>
         <input matInput placeholder="" value="{{model.RESNAMEID}}">

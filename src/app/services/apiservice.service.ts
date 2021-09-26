@@ -9,7 +9,7 @@ import { GetExtraModel } from "../models/GetCardDetails";
 })
 
 export class ApiserviceService{
-    baseURL: string="https://4001.hoteladvisor.net/"
+    baseURL: string=""
 
     constructor(private http: HttpClient){}
     

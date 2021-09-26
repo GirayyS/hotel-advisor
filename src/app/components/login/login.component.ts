@@ -7,7 +7,7 @@ import {
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
 import * as myGlobals from '../../globals';
-import {ActivatedRoute} from '@angular/router'
+import {ActivatedRoute, Router} from '@angular/router'
 import { query } from '@angular/animations';
 
 @Component({
@@ -16,30 +16,20 @@ import { query } from '@angular/animations';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  checkInput:boolean=true
   cardNo:string=""
   model: GetCardResponseModel = new GetCardResponseModel
   showSpinner=false
-  constructor(private service: ApiserviceService, private _snackBar: MatSnackBar,private route:ActivatedRoute) { }
+  constructor(private service: ApiserviceService, private _snackBar: MatSnackBar,private route:ActivatedRoute,private router:Router) { }
 
   ngOnInit():void {
-    // if(this.cardNo){
-    //   this.checkInput=false
-    // }else{
-    //   this.checkInput=true
-    // }
     this.route.queryParams.subscribe(
       params => {
         if(params && params["cardNo"]){
-          console.log("giray")
           this.getCard(params.cardNo)
         }
       }
     )
-    // this.route.params.subscribe(
-    //   params => this.cardNo=params.cardNo
-    // );
-    // if(this.cardNo) this.getCard(this.cardNo)
+
   }
 
   getLoggedIn(): boolean {
@@ -51,7 +41,7 @@ export class LoginComponent implements OnInit {
 
   }
 
-  getCard(cardNo: string) {
+  getCard(cardNo?: string) {
     this.showSpinner=true
 
     if(cardNo!=null){
@@ -69,17 +59,18 @@ export class LoginComponent implements OnInit {
         if (this.model && this.model.CARDNO==cardNo) {
           myGlobals.globals.setData(true);
         }else {
-          
+            
           this._snackBar.open(cardNo + ' kayıtlı değildir', 'Tamam', {
             horizontalPosition: 'center',
             verticalPosition: 'top',
+            duration:3000
           });
         }
         
       })
 
     }
-    
+    this.router.navigate([''],{queryParams:{cardNo:cardNo}})
     this.showSpinner=false
   }
 

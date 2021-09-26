@@ -19,8 +19,8 @@ export class GetCardResponseModel {
         CURRENCYID: number = 0
         CARDNO: string = ""
 
-
 }
+
 
 
 
